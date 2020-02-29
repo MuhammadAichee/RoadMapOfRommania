@@ -25,7 +25,7 @@ graph=[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 140, 0, 118, 0, 0, 0, 0, 0, 75,],
 [0, 0, 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
 [118, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 111, 0,],
 [0, 0, 0, 0, 0, 0, 0, 0, 86, 0, 0, 0, 0, 0, 0, 98, 0, 0, 0, 0,],
-[0, 0, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 142, 0, 0,],
+[0, 0, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 98, 0, 0, 142, 0, 0,],
 [0, 0, 0, 87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 92, 0, 0,],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 142, 92, 0, 0, 0,],
 [0, 70, 0, 0, 0, 0, 0, 0, 0 ,0 ,0, 0, 0, 111, 0 ,0 ,0, 0, 0, 0,],
@@ -298,7 +298,6 @@ def DFS(visited,graph,source,destination,level,g_level,flag,cost,parent,p,c,fina
             # print(final)
             # print(finalcost)
             
-            
             # print(finalparent)
             
             newvisited.pop()
@@ -344,6 +343,9 @@ def DFS(visited,graph,source,destination,level,g_level,flag,cost,parent,p,c,fina
                 a=nayi1.pop(0)
                 print(s[a],end=" -> ")
             print(s[destination])
+            
+            
+            print("\n")
             exit()
             
             # print("Flag: ",flag)
@@ -440,7 +442,7 @@ def Best(s,graph,source,dest):
                 q.put((hv[a],total_cost,a))
                              
             a=a+1
-    visited.reverse()        
+    visited.reverse()
     print("Total Cost",cost)
     while(len(visited)>1):
         print(s[visited.pop()],end=" -> ")
@@ -449,18 +451,42 @@ i=0
 j=0
 string=''
 # source=input("Enter Source: ")
-while string!="Arad":
+while string!="Drobeta":
     string=s[i]
     i=i+1
+string=''    
 # destination=input("Enter Destination: ")    
-while string!="Bucharest":
+while string!="Iasi":
     string=s[j]
     j=j+1
-print("========================BFS========================")    
-BFS(s,graph,i-1,j-1)
-print("========================UCS========================")
-UCS(s,graph,i-1,j-1)
-print("========================GBFS========================")
-Best(s,graph,i-1,j-1)
-print("========================IDDFS========================")
-IDDFS(visited,graph,i-1,j-1,g_level,flag,parent)
+if(i-1==j-1):
+    print("========================BFS========================")        
+    print("\n")
+    print("Source and Destination is same. Hence, Total Cost is 0")
+    print("\n")
+    print("========================UCS========================")
+    print("\n")
+    print("Source and Destination is same. Hence, Total Cost is 0")
+    print("\n")
+    print("========================UCS========================")
+    print("\n")
+    print("Source and Destination is same. Hence, Total Cost is 0")
+    print("\n")
+    print("========================IDDFS========================")
+    print("\n")
+    print("Source and Destination is same. Hence, Total Cost is 0")    
+    print("\n")
+else:
+    print("========================BFS========================")
+    BFS(s,graph,i-1,j-1)
+    print("\n")
+    print("========================UCS========================")
+    UCS(s,graph,i-1,j-1)
+    print("\n")
+    print("========================GBFS========================")
+    Best(s,graph,i-1,j-1)
+    print("\n")
+    print("========================IDDFS========================")
+    IDDFS(visited,graph,i-1,j-1,g_level,flag,parent)
+    print("\n")
+    print("\n")
