@@ -1,30 +1,37 @@
-def BFS(s,graph,source,dest):
-    cost=0
+try:
+    import Queue as Q
+except ImportError:
+    import queue as Q
+import collections
+
+def UCS(s,graph,source,dest):
+    nayi=[]
+    total_cost=0
+    parent=[]
     if(source==dest):
         print(source)
         return 0
-    nayi=[]
-    extra=[]
-    parent=[]
-    queue =[]
+    q=Q.PriorityQueue()
     visited=[]
-    queue.append((source,-1))
-    vertex=source    
-    while (vertex!= dest and len(queue)>0):
-        vertex,p=queue.pop(0)
-        visited.append(vertex)
-        parent.append(p)
-        if(len(extra)>0):
-            cost=cost+extra.pop(0)
+    visited.append(source)
+    q.put((0,source,-1))
+    vertex=source
+    parent.append(-1)
+    while (vertex!= dest and q.empty()==0):
+        cost, vertex,p=q.get()
+        if(vertex not in visited):
+            visited.append(vertex)
+            parent.append(p)
         a=0
         while a<20:
             if (graph[vertex][a] > 0):
-                if(a not in visited and a not in queue):
-                    queue.append((a,vertex))
-                    extra.append(graph[vertex][a])
-                    if(vertex==dest):
-                        break
+                if(a not in visited):
+                    total_cost=cost+graph[vertex][a]
+                    q.put((total_cost,a,vertex))
+                    
+                 
             a=a+1
+    print("Total Cost: ",cost)
     size=len(visited)
     newvisited=[]
     i=0
@@ -32,15 +39,10 @@ def BFS(s,graph,source,dest):
         newvisited.append(visited[i])
         i=i+1
     visited.reverse()
-    print("Total Cost: ",cost)
     print("Visited Path:",end=" ")
     while(len(visited)>1):
         print(s[visited.pop()],end=" -> ")
     print(s[dest])
-    i=0
-    i=len(visited)-1
-         
-    
     i=len(newvisited)-1
     newvisited.pop()
     while(len(newvisited)>1 or i>=0 or len(parent)>1):
@@ -59,6 +61,7 @@ def BFS(s,graph,source,dest):
             else:
                 q=len(newvisited)-1
                 q=newvisited.pop(q)
+                
     nayi1=[]
     while(len(nayi)>0):
         if(nayi[len(nayi)-1] not in nayi1):
@@ -70,3 +73,5 @@ def BFS(s,graph,source,dest):
         a=nayi1.pop(0)
         print(s[a],end=" -> ")
     print(s[dest])
+
+
