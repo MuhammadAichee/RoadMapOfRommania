@@ -12,4 +12,5 @@ Steps:
     2) run command "pipenv install".
     3) run command "pipenv shell"
     4) run command "python main.py"
+    5) Type source and destination name from the map in file graph.jpg.
 
